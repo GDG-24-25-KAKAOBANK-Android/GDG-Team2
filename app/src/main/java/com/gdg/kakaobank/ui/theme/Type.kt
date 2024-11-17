@@ -189,9 +189,3 @@ val B4_R = TextStyle(
     fontFamily = pretendardRegular,
     fontSize = 12.sp
 )
-
-
-
-
-
-
