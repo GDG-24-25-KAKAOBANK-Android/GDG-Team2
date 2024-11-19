@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.App.Starting" parent="Theme.SplashScreen">
+    <!-- 배경 색상 -->
+        <item name="windowSplashScreenBackground">@color/main_yellow</item>
+    <!-- 아이콘 설정 -->
+    <item name="windowSplashScreenAnimatedIcon">@drawable/kakaobank_logo</item>
+    <!-- 스플래시 종료 후 적용할 테마 -->
+    <item name="postSplashScreenTheme">@style/Theme.KakaoBank</item>
+</style>
+</resources>
