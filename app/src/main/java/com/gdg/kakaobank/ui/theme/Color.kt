@@ -13,4 +13,3 @@ val Pink = Color(0xFFE5766A)
 val Deep_Blue = Color(0xFF576878)
 val Dark_Mint = Color(0xFF85ACAC)
 val Light_Mint = Color(0xFFC1E2DF)
-
