@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">KakaoBank</string>
+    <string name="home">홈</string>
+    <string name="tag">혜택</string>
+    <string name="list">상품</string>
+    <string name="more">전체</string>
+
 </resources>

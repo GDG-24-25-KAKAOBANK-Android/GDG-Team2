@@ -1,0 +1,25 @@
+package com.gdg.kakaobank.presentation
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.fillMaxSize
+import com.gdg.kakaobank.ui.theme.H1_B
+import com.gdg.kakaobank.ui.theme.White
+
+@Composable
+fun MoreScreen() {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Text("전체", style = H1_B)
+    }
+}
