@@ -60,6 +60,7 @@ import java.time.format.TextStyle
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.style.TextAlign
@@ -189,7 +190,7 @@ fun ShareItem() {
 
 @Composable
 fun TagCard(title: String, backgroundColor: Color) {
-    var isSelected by remember { mutableStateOf(false) }
+    var isSelected by rememberSaveable { mutableStateOf(false) }
 
     Card(
         colors = CardDefaults.cardColors(containerColor = backgroundColor),
