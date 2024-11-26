@@ -1,5 +1,6 @@
 package com.gdg.kakaobank.presentation
 
+import MoreScreen
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -52,6 +53,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun MainScreen() {
     val items: List<KakaoNav> = listOf(
