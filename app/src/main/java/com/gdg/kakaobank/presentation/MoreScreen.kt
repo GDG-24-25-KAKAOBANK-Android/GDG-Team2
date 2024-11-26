@@ -25,6 +25,7 @@ fun MoreScreen() {
     val moreInfoList1 = listOf("서비스 이용약관", "개인정보 처리방침", "버전 정보")
     val moreInfoList2 = listOf("고객센터", "로그아웃", "회원 탈퇴")
     var showDialog by remember { mutableStateOf(false) }
+    var dialogType by remember { mutableStateOf("") }
     val context = LocalContext.current
 
     Column(
@@ -52,10 +53,13 @@ fun MoreScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         Text("기타", style = H6_SB)
         Spacer(modifier = Modifier.height(4.dp))
-        //회원 탈퇴만 팝업 알림 뜨도록 설정
+        //회원 탈퇴 및 로그아웃 팝업 알림 뜨도록 설정
         moreInfoList2.forEach { info ->
-            if (info == "회원 탈퇴") {
-                MoreInfo(text = info, onClick = { showDialog = true })
+            if (info == "회원 탈퇴" || info == "로그아웃") {
+                MoreInfo(text = info, onClick = {
+                    showDialog = true
+                    dialogType = info
+                })
             } else {
                 MoreInfo(text = info)
             }
@@ -67,10 +71,11 @@ fun MoreScreen() {
             onDismissRequest = { showDialog = false },
             text = {
                 Text(
-                    "회원 탈퇴 하시겠습니까?",
+                    "${dialogType} 하시겠습니까?",
                     style = H5_SB,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
                         .padding(16.dp, 30.dp, 16.dp, 10.dp)
                 )
             },
@@ -90,12 +95,13 @@ fun MoreScreen() {
                     }
                     Button(
                         colors = ButtonDefaults.buttonColors(containerColor = Main_Yellow, contentColor = Black),
-                        onClick = { showDialog = false
-                            Toast.makeText(context, "회원 탈퇴 되었습니다", Toast.LENGTH_SHORT).show()
+                        onClick = {
+                            showDialog = false
+                            Toast.makeText(context, "${dialogType} 되었습니다", Toast.LENGTH_SHORT).show()
                         },
                         modifier = Modifier.size(width = 110.dp, height = 45.dp)
                     ) {
-                        Text("회원 탈퇴", style = H7_B)
+                        Text(dialogType, style = H7_B)
                     }
                 }
             },
@@ -123,3 +129,8 @@ fun MoreInfo(text: String, onClick: () -> Unit = {}) {
     }
 }
 
+@Composable
+@Preview(showBackground = true)
+fun MoreScreenPreview() {
+    MoreScreen()
+}
