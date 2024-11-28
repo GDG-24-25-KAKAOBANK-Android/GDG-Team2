@@ -63,7 +63,7 @@ fun LoanCard() {
             Column {
                 Text(
                     text = "아파트부터 빌라까지\n주택담보대출",
-                    //style = H6_B,
+                    style = H6_B,
                     color = White,
                     modifier = Modifier.padding(8.dp)
                 )
@@ -90,7 +90,7 @@ fun LoanCategoryChips() {
     ) {
         Text(
             text = "대출",
-            //style = H6_B,
+            style = H6_B,
             color = Black,
             modifier = Modifier.padding(bottom = 16.dp)
         )
@@ -145,7 +145,7 @@ fun SelectableChip(
         Text(
             text = text,
             color = textColor,
-            //style = B4_R
+            style = B4_R
         )
     }
 }
