@@ -63,6 +63,7 @@ fun CardScreen(cardViewModel: CardViewModel = viewModel()) {
             style = H6_B,
             color = Black,
         )
+        Spacer(modifier = Modifier.height(14.dp))
 
         cards.forEach { card: Card ->
             CardInfo(cardtitle = card.title, cardinfo = card.description, circleColor = card.color)
