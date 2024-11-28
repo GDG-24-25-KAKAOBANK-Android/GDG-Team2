@@ -28,7 +28,7 @@ class InvestViewModel : ViewModel() {
     var selectedInvest by mutableStateOf<Invest?>(null)
 
     init {
-        //투자 데이터 추가
+        // 투자 데이터 추가
         _invests.addAll(
             listOf(
                 Invest("펀드"),
