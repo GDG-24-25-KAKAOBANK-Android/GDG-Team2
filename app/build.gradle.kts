@@ -3,6 +3,8 @@ import java.util.Properties
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    id("kotlin-kapt")
+    id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.9.0"
 }
 
@@ -58,6 +60,9 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.compose.foundation:foundation:1.5.1") // 버전 최신 확인
+    implementation ("androidx.compose.material:material:1.5.1") // 최신 버전 사용
+    implementation ("androidx.compose.runtime:runtime:1.5.1")
     implementation("io.coil-kt:coil-compose:2.7.0")
     implementation ("androidx.compose.ui:ui:1.5.0")
     implementation("com.google.accompanist:accompanist-pager:0.28.0")
@@ -82,6 +87,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("com.google.accompanist:accompanist-pager:0.28.0")
+    implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+    implementation ("androidx.hilt:hilt-navigation-compose:1.1.0")
+    implementation("com.google.dagger:hilt-android:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.44")
 
     // Retrofit2
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
