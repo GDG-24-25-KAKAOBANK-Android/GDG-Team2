@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.list
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -17,28 +16,26 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gdg.kakaobank.R
+import com.gdg.kakaobank.api.Recommendation
+import com.gdg.kakaobank.api.RecommendationViewModel
 import com.gdg.kakaobank.ui.theme.B3_B
 import com.gdg.kakaobank.ui.theme.B3_R
 import com.gdg.kakaobank.ui.theme.B4_R
 import com.gdg.kakaobank.ui.theme.Black
 import com.gdg.kakaobank.ui.theme.Deep_Blue
-import com.gdg.kakaobank.ui.theme.H1_B
 import com.gdg.kakaobank.ui.theme.H6_B
-import com.gdg.kakaobank.ui.theme.Main_Yellow
 import com.gdg.kakaobank.ui.theme.White
 
 @Composable
@@ -154,9 +151,24 @@ fun RecommendationItem(icon: Int, title: String, description: String) {
 }
 
 
+@Composable
+fun RecommendScreen(viewModel: RecommendationViewModel = hiltViewModel()) {
+    val recommendations = viewModel.recommendations
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(White),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Top
+    ) {
+        ListCard()
+        RecommendedListContent(recommendations)
+    }
+}
 
 
-@Preview(showBackground = true)
+
 @Composable
 fun PreviewListScreen() {
 
@@ -179,6 +191,7 @@ fun PreviewListScreen() {
         RecommendedListContent(dummyRecommendations)
     }
 }
+
 
 @Composable
 fun RecommendedListContent(recommendations: List<Recommendation>) {

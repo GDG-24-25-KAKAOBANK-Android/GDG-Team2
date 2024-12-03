@@ -1,8 +1,6 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.list
 
-import android.graphics.Color
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -14,29 +12,18 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color as ComposeColor
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.shape.RoundedCornerShape
-import com.gdg.kakaobank.R
-import com.gdg.kakaobank.ui.theme.B3_B
-import com.gdg.kakaobank.ui.theme.B3_R
+import com.gdg.kakaobank.presentation.NoRippleInteractionSource
 import com.gdg.kakaobank.ui.theme.B4_R
 import com.gdg.kakaobank.ui.theme.Black
 import com.gdg.kakaobank.ui.theme.Dark_Gray

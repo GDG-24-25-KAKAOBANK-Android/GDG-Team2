@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.list
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -29,6 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
+import com.gdg.kakaobank.api.MainViewModel
+import com.gdg.kakaobank.api.User
 import com.gdg.kakaobank.ui.theme.B3_B
 import com.gdg.kakaobank.ui.theme.B4_R
 import com.gdg.kakaobank.ui.theme.Black
@@ -38,7 +39,7 @@ import com.gdg.kakaobank.ui.theme.Pink
 import com.gdg.kakaobank.ui.theme.White
 
 @Composable
-fun AccountScreen(navController: NavController) {
+fun AccountScreen() {
     val mainViewModel: MainViewModel = viewModel()
     val users by mainViewModel.users.observeAsState(emptyList())
 

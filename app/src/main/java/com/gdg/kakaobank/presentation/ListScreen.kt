@@ -20,6 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.gdg.kakaobank.list.AccountScreen
+import com.gdg.kakaobank.list.CardScreen
+import com.gdg.kakaobank.list.InvestScreen
+import com.gdg.kakaobank.list.LoanScreen
+import com.gdg.kakaobank.list.PreviewListScreen
+import com.gdg.kakaobank.list.RecommendScreen
+import com.gdg.kakaobank.list.SavingScreen
 import com.gdg.kakaobank.ui.theme.B2_B
 import com.gdg.kakaobank.ui.theme.Black
 import com.gdg.kakaobank.ui.theme.Gray
@@ -112,17 +119,20 @@ fun ClipHorizontalPager(
         state = pagerState
     ) { index ->
         Box(modifier = Modifier.fillMaxSize()) {
-            SearchResultTab(page = pages[index])
+            when (pages[index]) {
+                "대출" -> LoanScreen()
+                "통장" -> AccountScreen()
+                "추천" -> PreviewListScreen()
+                "저축" -> SavingScreen()
+                "카드" -> CardScreen()
+                "투자" -> InvestScreen()
+                else -> Text(text = "No content")
+            }
         }
     }
 }
 
-@Composable
-fun SearchResultTab(page: String) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Content for $page", modifier = Modifier.align(Alignment.Center))
-    }
-}
+
 
 @Preview(showBackground = true)
 @Composable

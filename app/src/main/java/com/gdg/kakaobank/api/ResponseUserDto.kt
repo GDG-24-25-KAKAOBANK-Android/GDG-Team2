@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.api
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

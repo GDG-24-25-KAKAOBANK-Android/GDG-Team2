@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.api
 
 import com.gdg.kakaobank.BuildConfig.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory

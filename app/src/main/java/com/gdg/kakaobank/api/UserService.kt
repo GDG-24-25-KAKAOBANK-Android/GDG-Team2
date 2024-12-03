@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.api
 
 import retrofit2.http.GET
 import retrofit2.http.Query

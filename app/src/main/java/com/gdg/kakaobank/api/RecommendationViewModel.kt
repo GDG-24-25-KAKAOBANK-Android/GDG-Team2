@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.api
 
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.getValue

@@ -1,4 +1,4 @@
-package com.gdg.kakaobank.presentation
+package com.gdg.kakaobank.api
 
 import android.util.Log
 import androidx.lifecycle.LiveData
