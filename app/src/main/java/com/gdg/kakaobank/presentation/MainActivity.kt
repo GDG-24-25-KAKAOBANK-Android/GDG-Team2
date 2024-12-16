@@ -41,6 +41,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KakaoBankTheme {
                 MainScreen()
+                BottomSheetWithBackHandler()
             }
         }
 
@@ -69,6 +70,7 @@ fun MainScreen() {
         bottomBar = {
                 BottomNavigation(
                     backgroundColor = White,
+                    modifier = Modifier.padding(bottom = 30.dp)
                 ) {
                     val navBackStackEntry by navController.currentBackStackEntryAsState()
                     val currentRoute = navBackStackEntry?.destination?.route
@@ -118,10 +120,45 @@ fun MainScreen() {
             startDestination = KakaoNav.Home.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = KakaoNav.Home.route) { HomeScreen() }
+            composable(route = KakaoNav.Home.route) { HomeScreen(navController = navController) }
             composable(route = KakaoNav.Tag.route) { TagScreen() }
             composable(route = KakaoNav.List.route) { ListScreen() }
             composable(route = KakaoNav.More.route) { MoreScreen() }
+            composable(route = "transfer") {
+                TransferScreen(
+                    onCloseClick = { navController.popBackStack() },
+                    onNextClick = { receiverName ->
+                        navController.navigate("TransferDetails/$receiverName")
+                    }
+                )
+            }
+
+            composable(route = "TransferDetails/{receiverName}") { backStackEntry ->
+                val receiverName = backStackEntry.arguments?.getString("receiverName") ?: ""
+                TransferDetailScreen(
+                    receiverName = receiverName,
+                    onCancelClick = { navController.popBackStack() },
+                    onNextClick = {
+                        navController.navigate("TransferComplete/$receiverName")
+                    },
+                    navController = navController
+                )
+            }
+
+            composable(route = "TransferComplete/{receiverName}") { backStackEntry ->
+                val receiverName = backStackEntry.arguments?.getString("receiverName") ?: ""
+                TransferCompleteScreen(
+                    receiverName = receiverName,
+                    onBackClick = {
+                        navController.navigate(KakaoNav.Home.route) {
+                            popUpTo(KakaoNav.Home.route) { inclusive = false }
+                            launchSingleTop = true
+                        }
+                    }
+                )
+            }
+
+
         }
     }
 }

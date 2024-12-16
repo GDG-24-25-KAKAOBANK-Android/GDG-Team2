@@ -18,13 +18,14 @@ import com.gdg.kakaobank.ui.theme.Pink
 import com.gdg.kakaobank.ui.theme.White
 import androidx.compose.material3.Text
 import androidx.compose.ui.res.painterResource
+import androidx.navigation.NavController
 import com.gdg.kakaobank.R
 import com.gdg.kakaobank.ui.theme.B4_B
 import com.gdg.kakaobank.ui.theme.Black
 import com.gdg.kakaobank.ui.theme.H5_B
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     val bankList = listOf(
         Pair("김나현", "700,000,000"),
         Pair("조영서", "700,000,000"),
@@ -76,7 +77,7 @@ fun HomeScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             items(1) {
-                MyBankComponent(name = "눈송이", amount = "100,000,000")
+                MyBankComponent(name = "눈송이", amount = "100,000,000", navController = navController)
                 Spacer(modifier = Modifier.height(12.dp))
             }
             items(bankList.size) { index ->
@@ -97,5 +98,5 @@ fun HomeScreen() {
 @Preview(showBackground = true)
 @Composable
 fun CustomComponentPreview() {
-    HomeScreen()
+    //HomeScreen()
 }

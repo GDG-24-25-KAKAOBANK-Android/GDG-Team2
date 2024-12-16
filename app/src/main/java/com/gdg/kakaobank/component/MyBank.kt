@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.gdg.kakaobank.R
 import com.gdg.kakaobank.ui.theme.B4_R
 import com.gdg.kakaobank.ui.theme.B4_SB
@@ -27,7 +28,8 @@ import com.gdg.kakaobank.ui.theme.Yellow
 fun MyBankComponent(
     name: String,
     amount: String,
-    backgroundColor: Color = Main_Yellow
+    backgroundColor: Color = Main_Yellow,
+    navController: NavController
 ) {
     Box(
         modifier = Modifier
@@ -72,7 +74,7 @@ fun MyBankComponent(
                 .align(Alignment.TopEnd)
         )
         Button(
-            onClick = { /* TODO: 이체 버튼 클릭 처리 */ },
+            onClick = { navController.navigate("transfer") },
             modifier = Modifier
                 .align(Alignment.BottomEnd)
                 .size(50.dp, 30.dp), // 버튼 크기 조정
