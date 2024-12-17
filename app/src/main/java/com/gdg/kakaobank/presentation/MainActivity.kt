@@ -22,11 +22,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import androidx.navigation.compose.rememberNavController
 import com.gdg.kakaobank.ui.theme.KakaoBankTheme
 import com.gdg.kakaobank.presentation.navigator.KakaoNav
+import com.gdg.kakaobank.presentation.navigator.TransferViewModel
 import com.gdg.kakaobank.ui.theme.B4_R
 import com.gdg.kakaobank.ui.theme.Dark_Gray
 import com.gdg.kakaobank.ui.theme.Gray
@@ -63,54 +65,53 @@ fun MainScreen() {
         KakaoNav.More,
     )
     val navController = rememberNavController()
+    val transferViewModel: TransferViewModel = viewModel()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         bottomBar = {
-                BottomNavigation(
-                    backgroundColor = White,
-                ) {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentRoute = navBackStackEntry?.destination?.route
+            BottomNavigation(
+                backgroundColor = White,
+            ) {
+                val navBackStackEntry by navController.currentBackStackEntryAsState()
+                val currentRoute = navBackStackEntry?.destination?.route
 
-                    items.forEach { screen ->
-                        NavigationBarItem(
-                            interactionSource = NoRippleInteractionSource,
-                            label = {
-                                Text(
-                                    text = stringResource(id = screen.resourceId),
-                                    style = B4_R
-                                )
-                            },
-                            selected = currentRoute == screen.route,
-                            colors = NavigationBarItemDefaults.colors(
-                                selectedTextColor = Dark_Gray,
-                                selectedIconColor = Dark_Gray,
-                                unselectedTextColor = Gray,
-                                unselectedIconColor = Gray,
-                                indicatorColor = White
-                            ),
-                            onClick = {
-                                navController.navigate(screen.route) {
-                                    popUpTo(navController.graph.findStartDestination().id) {
-                                        saveState = true
-                                    }
-                                    launchSingleTop = true
-                                    restoreState = true
+                items.forEach { screen ->
+                    NavigationBarItem(
+                        interactionSource = NoRippleInteractionSource,
+                        label = {
+                            Text(
+                                text = stringResource(id = screen.resourceId),
+                                style = B4_R
+                            )
+                        },
+                        selected = currentRoute == screen.route,
+                        colors = NavigationBarItemDefaults.colors(
+                            selectedTextColor = Dark_Gray,
+                            selectedIconColor = Dark_Gray,
+                            unselectedTextColor = Gray,
+                            unselectedIconColor = Gray,
+                            indicatorColor = White
+                        ),
+                        onClick = {
+                            navController.navigate(screen.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
                                 }
-                            },
-                            icon = {
-                                Icon(
-                                    painter = painterResource(id = screen.icon),
-                                    contentDescription = screen.route,
-                                    modifier = Modifier.size(24.dp) // 아이콘 크기 설정
-
-                                )
-                            },
-                        )
-                    }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        icon = {
+                            Icon(
+                                painter = painterResource(id = screen.icon),
+                                contentDescription = screen.route,
+                                modifier = Modifier.size(24.dp) // 아이콘 크기 설정
+                            )
+                        },
+                    )
                 }
-
+            }
         }
     ) { innerPadding ->
         NavHost(
@@ -118,14 +119,27 @@ fun MainScreen() {
             startDestination = KakaoNav.Home.route,
             modifier = Modifier.padding(innerPadding)
         ) {
-            composable(route = KakaoNav.Home.route) { HomeScreen() }
+            composable(route = KakaoNav.Home.route) { HomeScreen(navController) }
             composable(route = KakaoNav.Tag.route) { TagScreen() }
             composable(route = KakaoNav.List.route) { ListScreen() }
             composable(route = KakaoNav.More.route) { MoreScreen() }
+            composable(route = "transfer") { TransferScreen(navController = navController, transferViewModel = transferViewModel) }
+            composable(route = "transfer_done/{recipientName}") { backStackEntry ->
+                TransferDoneScreen(
+                    navController = navController,
+                    recipientName = backStackEntry.arguments?.getString("recipientName") ?: "Unknown",
+                    transferViewModel = transferViewModel
+                )
+            }
+            composable(route = "remit/{recipientName}") { backStackEntry ->
+                RemittanceScreen(
+                    navController = navController,
+                    recipientName = backStackEntry.arguments?.getString("recipientName") ?: "Unknown"
+                )
+            }
         }
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
