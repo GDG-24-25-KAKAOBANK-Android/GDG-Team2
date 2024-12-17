@@ -87,20 +87,22 @@ fun RemittanceScreen(navController: NavController, recipientName: String) {
                         )
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    Button(
-                        onClick = { navController.navigate("transfer_done/${recipientName}") },
-                        modifier = Modifier
-                            .width(120.dp)
-                            .height(60.dp),
-                        colors = ButtonDefaults.buttonColors(containerColor = Main_Yellow)
-                    ) {
-                        Text(
-                            text = "이체",
-                            style = H7_B,
-                            color = Black,
-                            modifier = Modifier.padding(0.dp)
-                        )
-                    }
+Button(
+    onClick = {
+        navController.navigate("transfer_done/${recipientName}/${sendmoney.value.text}원")
+    },
+    modifier = Modifier
+        .width(120.dp)
+        .height(60.dp),
+    colors = ButtonDefaults.buttonColors(containerColor = Main_Yellow)
+) {
+    Text(
+        text = "이체",
+        style = H7_B,
+        color = Black,
+        modifier = Modifier.padding(0.dp)
+    )
+}
                 }
             }
         },

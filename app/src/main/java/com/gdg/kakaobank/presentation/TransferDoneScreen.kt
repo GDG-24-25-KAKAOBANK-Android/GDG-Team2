@@ -31,7 +31,7 @@ import com.gdg.kakaobank.ui.theme.Main_Yellow
 import com.gdg.kakaobank.ui.theme.White
 
 @Composable
-fun TransferDoneScreen(navController: NavController, recipientName: String, transferViewModel: TransferViewModel) {
+fun TransferDoneScreen(navController: NavController, recipientName: String, amount: String, transferViewModel: TransferViewModel) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,7 +73,7 @@ fun TransferDoneScreen(navController: NavController, recipientName: String, tran
 
         Button(
             onClick = {
-                transferViewModel.addTransfer(Transfer(recipientName, "금액"))
+                transferViewModel.addTransfer(Transfer(recipientName, amount))
                 navController.navigate(KakaoNav.Home.route)
             },
             modifier = Modifier
@@ -91,9 +91,3 @@ fun TransferDoneScreen(navController: NavController, recipientName: String, tran
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewTransferDoneScreen() {
-    val transferViewModel = TransferViewModel()
-    TransferDoneScreen(navController = rememberNavController(), recipientName = "홍길동", transferViewModel = transferViewModel)
-}

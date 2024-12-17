@@ -53,11 +53,11 @@ class TransferViewModel : ViewModel() {
     init {
         _transfer.addAll(
             listOf(
-                Transfer("이가을", "10,000원"),
-                Transfer("김나현", "20,000원"),
-                Transfer("백서현", "300,000원"),
-                Transfer("이현진", "400원"),
-                Transfer("조영서", "5000원")
+                Transfer("이가을", "10000"),
+                Transfer("김나현", "20000"),
+                Transfer("백서현", "300000"),
+                Transfer("이현진", "400"),
+                Transfer("조영서", "5000")
             )
         )
     }
@@ -98,31 +98,30 @@ fun TransferScreen(navController: NavController, transferViewModel: TransferView
         )
         Spacer(modifier = Modifier.height(10.dp))
 
-        // 계좌번호 입력 필드
-TextField(
-    value = recipientName.value,
-    onValueChange = { recipientName.value = it },
-    placeholder = { Text("받는 사람 이름 또는 계좌번호", style = B4_R, color = Gray) },
-    leadingIcon = {
-        Icon(
-            painter = painterResource(id = R.drawable.name_search),
-            contentDescription = null,
+        TextField(
+            value = recipientName.value,
+            onValueChange = { recipientName.value = it },
+            placeholder = { Text("받는 사람 이름 또는 계좌번호", style = B4_R, color = Gray) },
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(id = R.drawable.name_search),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .size(32.dp)
+                        .padding(4.dp),
+                    tint = Gray
+                )
+            },
+            textStyle = B4_R.copy(color = Black),
             modifier = Modifier
-                .size(32.dp)
-                .padding(4.dp),
-            tint = Gray
+                .fillMaxWidth(),
+            colors = TextFieldDefaults.textFieldColors(
+                focusedIndicatorColor = Gray,
+                unfocusedIndicatorColor = Gray,
+                cursorColor = Black,
+                containerColor = Color.Transparent
+            )
         )
-    },
-    textStyle = B4_R.copy(color = Black),
-    modifier = Modifier
-        .fillMaxWidth(),
-    colors = TextFieldDefaults.textFieldColors(
-        focusedIndicatorColor = Gray,
-        unfocusedIndicatorColor = Gray,
-        cursorColor = Black,
-        containerColor = Color.Transparent
-    )
-)
 
         Spacer(modifier = Modifier.height(40.dp))
 

@@ -26,6 +26,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import com.gdg.kakaobank.ui.theme.KakaoBankTheme
 import com.gdg.kakaobank.presentation.navigator.KakaoNav
 import com.gdg.kakaobank.presentation.navigator.TransferViewModel
@@ -123,14 +125,21 @@ fun MainScreen() {
             composable(route = KakaoNav.Tag.route) { TagScreen() }
             composable(route = KakaoNav.List.route) { ListScreen() }
             composable(route = KakaoNav.More.route) { MoreScreen() }
+
             composable(route = "transfer") { TransferScreen(navController = navController, transferViewModel = transferViewModel) }
-            composable(route = "transfer_done/{recipientName}") { backStackEntry ->
-                TransferDoneScreen(
-                    navController = navController,
-                    recipientName = backStackEntry.arguments?.getString("recipientName") ?: "Unknown",
-                    transferViewModel = transferViewModel
+
+            composable(
+                "transfer_done/{recipientName}/{amount}",
+                arguments = listOf(
+                    navArgument("recipientName") { type = NavType.StringType },
+                    navArgument("amount") { type = NavType.StringType }
                 )
+            ) { backStackEntry ->
+                val recipientName = backStackEntry.arguments?.getString("recipientName") ?: ""
+                val amount = backStackEntry.arguments?.getString("amount") ?: ""
+                TransferDoneScreen(navController, recipientName, amount, transferViewModel)
             }
+
             composable(route = "remit/{recipientName}") { backStackEntry ->
                 RemittanceScreen(
                     navController = navController,
