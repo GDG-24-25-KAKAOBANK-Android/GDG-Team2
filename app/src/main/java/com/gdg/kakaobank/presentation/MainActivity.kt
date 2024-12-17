@@ -45,6 +45,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             KakaoBankTheme {
                 MainScreen()
+                MainScreenWithBackHandler()
             }
         }
 
@@ -74,6 +75,7 @@ fun MainScreen() {
         bottomBar = {
             BottomNavigation(
                 backgroundColor = White,
+                modifier = Modifier.padding(bottom = 30.dp)
             ) {
                 val navBackStackEntry by navController.currentBackStackEntryAsState()
                 val currentRoute = navBackStackEntry?.destination?.route
